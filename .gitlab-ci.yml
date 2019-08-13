@@ -21,14 +21,20 @@ stages:
   - build
   - deploy
 
-format:
+test:
+  except:
+    refs:
+      - master
   stage: test
   script:
     - go fmt $(go list ./... | grep -v /vendor/)
     - go vet $(go list ./... | grep -v /vendor/)
     - go test -race $(go list ./... | grep -v /vendor/)
 
-compile:
+build:
+  only:
+    refs:
+      - master
   stage: build
   script:
     - go build -race -ldflags "-extldflags '-static'" -o $CI_PROJECT_DIR/test

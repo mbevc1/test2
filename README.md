@@ -1,2 +1,2 @@
 # test2
-Testing2 Gitlab CI/CD
+Testing2 CI/CD linked to Gitlab
